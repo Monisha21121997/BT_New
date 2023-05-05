@@ -1,4 +1,5 @@
 package runners;
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -8,7 +9,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/testCases",
         glue = {"stepDefinitions"},
-        plugin = {"html:target/cucumber-html-report.html"}
+        plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
+        monochrome = true,
+        publish = true
 )
 public class testRunner {
 

@@ -1,2 +1,6 @@
-package enums;public class EnvironmentType {
+package enums;
+
+public enum EnvironmentType {
+    LOCAL,
+    REMOTE
 }

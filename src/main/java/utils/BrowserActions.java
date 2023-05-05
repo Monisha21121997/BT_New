@@ -1,2 +1,5 @@
-package utils;public class BrowserActions {
+package utils;
+
+public class BrowserActions {
+
 }

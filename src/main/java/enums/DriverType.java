@@ -1,2 +1,8 @@
-package enums;public class DriverType {
+package enums;
+
+public enum DriverType {
+    CHROME,
+    FIREFOX,
+    EDGE,
+    SAFARI
 }
