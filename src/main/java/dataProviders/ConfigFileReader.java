@@ -67,19 +67,19 @@ public class ConfigFileReader {
     }
 
     public String getToEmailAddress(){
-        String toEmail = properties.getProperty("to_address");
+        String toEmail = properties.getProperty("to_email_address");
         if (toEmail != null) return toEmail;
         else throw new RuntimeException("to_address key not specified in Configuration.properties file @ "+propertyFilePath);
     }
 
-    public String getFromEmaillAddress(){
-        String fromEmail = properties.getProperty("from_address");
+    public String getFromEmailAddress(){
+        String fromEmail = properties.getProperty("from_email_address");
         if (fromEmail != null) return fromEmail;
         else throw new RuntimeException("from_address key not specified in Configuration.properties file @ "+propertyFilePath);
     }
 
-    public String getFromPassword(){
-        String fromPassword = properties.getProperty("from_address_password");
+    public String getFromEmailAddressPassword(){
+        String fromPassword = properties.getProperty("from_email_address_password");
         if (fromPassword !=null) return fromPassword;
         else throw new RuntimeException("from_address_password key not specified in Configuration.properties file @ "+propertyFilePath);
     }

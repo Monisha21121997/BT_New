@@ -8,19 +8,28 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+import managers.FileReaderManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import stepDefinitions.Hooks;
 
 import java.util.Date;
 import java.util.Properties;
 
 public class SendEmailReport {
+
+    static Logger log = LogManager.getLogger(SendEmailReport.class);
     public static void main(String[] args) {
-        System.out.println("::Starting Email Sending Process::");
+        log.info("-----------------------------------------------------------------------------");
+        log.info("::::::::::::::::::::: Starting Email Send Process :::::::::::::::::::::");
+        log.info("-----------------------------------------------------------------------------");
         //provide recipient's email ID
-        String to = "pranjal.yadav@axeno.co";
-        //provide sender's email ID
-        String from = "pranjal.yadav.argildx@gmail.com";
-        final String username = "pranjal.yadav.argildx@gmail.com";
-        final String password = "jzxiibtuwuoicphe";
+        String to = FileReaderManager.getInstance().getConfigFileReader().getToEmailAddress();
+        //provide sender's email ID & credentials
+        String from = FileReaderManager.getInstance().getConfigFileReader().getFromEmailAddress();
+        final String username = FileReaderManager.getInstance().getConfigFileReader().getFromEmailAddress();
+        final String password = FileReaderManager.getInstance().getConfigFileReader().getFromEmailAddressPassword();
+        //Email host details
         String host = "smtp.gmail.com";
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -56,10 +65,12 @@ public class SendEmailReport {
             message.setContent(multipart);
             //send the email message
             Transport.send(message);
-            System.out.println("Email Message Sent Successfully");
+            log.info("-----------------------------------------------------------------------------");
+            log.info("::::::::::::::::::::: Email Message Sent Successfully :::::::::::::::::::::");
+            log.info("-----------------------------------------------------------------------------");
         }
         catch (MessagingException e) {
-            throw new RuntimeException("Unable to send email--> "+e);
+            throw new RuntimeException("<----------- Unable to send email -----------> "+e);
         }
     }
 }

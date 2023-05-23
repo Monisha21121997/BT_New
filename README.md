@@ -27,6 +27,26 @@ Run the test & send email after test execution
   mvn clean install
 ```
 
+## Configuration
+
+Following are the configurations available in the Configuration.properties file:
+
+`AUT_url:` URL where the test is running
+
+`environment:` local or remote (Currently, only local is supported)
+
+`browser:` Available browser type = chrome, firefox, edge, safari
+
+`windowMaximize:` if set to false, then browser will launch in default window size
+
+`implicitWaitTime:` Implicit wait duration is seconds
+
+`to_email_address:` Replace with your email address to receive email
+
+`from_email_address:` Please don't change this
+
+`from_email_address_password:`Please don't change this
+
 ## Tech Stack
 
 **Automation Tool:** Selenium 4.x
