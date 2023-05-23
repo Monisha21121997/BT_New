@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class ConfigFileReader {
     private Properties properties;
-    private final String propertyFilePath = "src/test/resources/configs/Configuration.properties";
+    private static final String propertyFilePath = "src/test/resources/configs/Configuration.properties";
 
     //Read Properties File
     public ConfigFileReader(){
@@ -39,7 +39,7 @@ public class ConfigFileReader {
     }
 
     public String getApplicationURL(){
-        String urlAddress = properties.getProperty("prod_url");
+        String urlAddress = properties.getProperty("AUT_url");
         if (urlAddress != null) return urlAddress;
         else throw new RuntimeException("prod_url key not specified in Configuration.properties file @ "+propertyFilePath);
     }
