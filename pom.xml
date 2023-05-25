@@ -97,7 +97,7 @@
                 <version>3.0.0</version>
                 <configuration>
                     <includes>
-                        <include>**/*testRunner.java</include>
+                        <include>**/*TestRunner.java</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>

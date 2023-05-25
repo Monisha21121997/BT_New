@@ -9,13 +9,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pageObjects.LoginPage;
 
-public class loginTest {
+public class LoginTest {
+
     TestContext testContext;
     LoginPage loginPage;
 
-    static Logger log = LogManager.getLogger(loginTest.class);
+    static Logger log = LogManager.getLogger(LoginTest.class);
 
-    public loginTest(TestContext context){
+    public LoginTest(TestContext context) {
         testContext = context;
         loginPage = testContext.getPageObjectManager().getLoginPage();
     }
@@ -42,13 +43,15 @@ public class loginTest {
     public void userEntersTheAnd(String my_username, String my_password) {
         loginPage.enterUsername(my_username);
         loginPage.enterPassword(my_password);
-        log.info("======= User enters the username & password as provided in the feature file =======\n");
+        log.info(
+                "======= User enters the username & password as provided in the feature file =======\n");
     }
 
     @When("user clicks on the Sign In button")
     public void user_clicks_on_the_sign_in_button() {
         loginPage.clickSigninButton();
-        log.info("======= User enters the username & password as provided in the feature file =======\n");
+        log.info(
+                "======= User enters the username & password as provided in the feature file =======\n");
     }
 
     @Then("user should be logged in")

@@ -19,6 +19,7 @@ import java.util.Properties;
 public class SendEmailReport {
 
     static Logger log = LogManager.getLogger(SendEmailReport.class);
+
     public static void main(String[] args) {
         log.info("-----------------------------------------------------------------------------");
         log.info("::::::::::::::::::::: Starting Email Send Process :::::::::::::::::::::");
@@ -27,8 +28,10 @@ public class SendEmailReport {
         String to = FileReaderManager.getInstance().getConfigFileReader().getToEmailAddress();
         //provide sender's email ID & credentials
         String from = FileReaderManager.getInstance().getConfigFileReader().getFromEmailAddress();
-        final String username = FileReaderManager.getInstance().getConfigFileReader().getFromEmailAddress();
-        final String password = FileReaderManager.getInstance().getConfigFileReader().getFromEmailAddressPassword();
+        final String username = FileReaderManager.getInstance().getConfigFileReader()
+                .getFromEmailAddress();
+        final String password = FileReaderManager.getInstance().getConfigFileReader()
+                .getFromEmailAddressPassword();
         //Email host details
         String host = "smtp.gmail.com";
         Properties props = new Properties();
@@ -50,14 +53,14 @@ public class SendEmailReport {
             message.setFrom(new InternetAddress(from));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             //set email subject field
-            message.setSubject("Test Execution Report | Completed on "+date.toString());
+            message.setSubject("Test Execution Report | Completed on " + date.toString());
             //Add Attachment
             BodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText("Please find the attached Test Execution Report");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
-            String fileName = System.getProperty("user.dir")+"/target/ExecutionReports/Report.html";
+            String fileName = System.getProperty("user.dir") + "/target/ExecutionReports/Report.html";
             DataSource source = new FileDataSource(fileName);
             messageBodyPart.setDataHandler(new DataHandler(source));
             messageBodyPart.setFileName("Report.html");
@@ -68,9 +71,8 @@ public class SendEmailReport {
             log.info("-----------------------------------------------------------------------------");
             log.info("::::::::::::::::::::: Email Message Sent Successfully :::::::::::::::::::::");
             log.info("-----------------------------------------------------------------------------");
-        }
-        catch (MessagingException e) {
-            throw new RuntimeException("<----------- Unable to send email -----------> "+e);
+        } catch (MessagingException e) {
+            throw new RuntimeException("<----------- Unable to send email -----------> " + e);
         }
     }
 }
