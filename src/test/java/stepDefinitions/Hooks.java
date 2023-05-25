@@ -10,15 +10,16 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
+
     TestContext testContext;
     static Logger log = LogManager.getLogger(Hooks.class);
 
-    public Hooks(TestContext context){
+    public Hooks(TestContext context) {
         testContext = context;
     }
 
     @Before
-    public static void BeforeScenario(Scenario scenario){
+    public static void BeforeScenario(Scenario scenario) {
         log.info("-----------------------------------------------------------------------------");
         log.info("Feature ID- " + scenario.getId());
         log.info(" Executing Scenario ---> " + scenario.getName());
@@ -27,16 +28,17 @@ public class Hooks {
 
     //Order 1 will run before Order 0
     @After(order = 1)
-    public void afterScenario(Scenario scenario){
+    public void afterScenario(Scenario scenario) {
         log.info("-----------------------------------------------------------------------------");
         log.info("======= Scenario execution is finished: " + scenario.getName());
         log.info("-----------------------------------------------------------------------------\n\n");
 
-        if (scenario.isFailed()){
-            String screenshotName = scenario.getName().replaceAll(" ","_");
-                //Take Screenshot
-                byte[] sourcePath = ((TakesScreenshot) testContext.getWebDriverManager().getDriver()).getScreenshotAs(OutputType.BYTES);
-                scenario.attach(sourcePath,"image/png", screenshotName);
+        if (scenario.isFailed()) {
+            String screenshotName = scenario.getName().replaceAll(" ", "_");
+            //Take Screenshot
+            byte[] sourcePath = ((TakesScreenshot) testContext.getWebDriverManager()
+                    .getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(sourcePath, "image/png", screenshotName);
         }
     }
 

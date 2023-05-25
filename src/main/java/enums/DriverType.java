@@ -1,8 +1,8 @@
 package enums;
 
 public enum DriverType {
-    CHROME,
-    FIREFOX,
-    EDGE,
-    SAFARI
+  CHROME,
+  FIREFOX,
+  EDGE,
+  SAFARI
 }

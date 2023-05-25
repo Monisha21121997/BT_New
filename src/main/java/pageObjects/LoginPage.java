@@ -12,15 +12,18 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class LoginPage {
+
     WebDriver driver;
+
     //Initializing PageFactory
-    public LoginPage(WebDriver driver){
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     static Logger log = LogManager.getLogger(LoginPage.class);
 
+    //WebElements
     @FindBy(xpath = "//li[@class='nav-item nav__menu__option__icon anonymous__user position-relative mb-1']//span")
     private WebElement userIcon;
 
@@ -39,37 +42,42 @@ public class LoginPage {
 
     //Public getter Methods
 
-        public void openHomepageURL(){
-            driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL());
-        }
+    public void openHomepageURL() {
+        driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL());
+    }
 
-        public void clickUserIcon(){
-            userIcon.click();
-        }
+    public void clickUserIcon() {
+        userIcon.click();
+    }
 
-        public void isLoginPopupVisible(){
-            submitButton.isDisplayed();
-            Assert.assertTrue(submitButton.isDisplayed(),"Login button is Not Visible");
-        }
+    public void isLoginPopupVisible() {
+        Assert.assertTrue(submitButton.isDisplayed(), "is Login button visible?");
+    }
 
-        public void enterUsername(String my_username){
-            userName.sendKeys(my_username);
-        }
+    public void enterUsername(String my_username) {
+        userName.sendKeys(my_username);
+    }
 
-        public void enterPassword(String my_password){
-            password.sendKeys(my_password);
-        }
+    public void enterPassword(String my_password) {
+        password.sendKeys(my_password);
+    }
 
-        public void clickSigninButton(){
-            submitButton.click();
-        }
+    public void clickSigninButton() {
+        submitButton.click();
+    }
 
-        public void isProfileDisplayed(){
-            log.info("<---------------- Checking if the user is logged in or not -------------->");
-            try{
-                if (loggedInUserIcon.isDisplayed()) loggedInUserIcon.click();
-            }catch (NoSuchElementException e){
-                Assert.assertTrue(Boolean.FALSE,"User is successfully logged in");
-            }
-        }
+    public void isProfileDisplayed() {
+        log.info("<---------------- Checking if the user is logged in or not -------------->");
+//    try {
+//      if (loggedInUserIcon.isDisplayed()) {
+//        loggedInUserIcon.click();
+//      }
+//    } catch (NoSuchElementException e) {
+//      Assert.assertTrue(Boolean.FALSE, "User is successfully logged in");
+//    }
+        if (loggedInUserIcon.isDisplayed()) {
+            log.info("<-------------- User is logged -------------->");
+            loggedInUserIcon.click();
+        } else Assert.fail("<----- User is unable to log in ----->");
+    }
 }
