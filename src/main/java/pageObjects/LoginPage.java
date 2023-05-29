@@ -3,7 +3,6 @@ package pageObjects;
 import managers.FileReaderManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -24,7 +23,7 @@ public class LoginPage {
     static Logger log = LogManager.getLogger(LoginPage.class);
 
     //WebElements
-    @FindBy(xpath = "//li[@class='nav-item nav__menu__option__icon anonymous__user position-relative mb-1']//span")
+    @FindBy(xpath = "//li[contains(@class,'anonymous__user')]")
     private WebElement userIcon;
 
     @FindBy(id = "login-submit")
@@ -68,16 +67,12 @@ public class LoginPage {
 
     public void isProfileDisplayed() {
         log.info("<---------------- Checking if the user is logged in or not -------------->");
-//    try {
-//      if (loggedInUserIcon.isDisplayed()) {
-//        loggedInUserIcon.click();
-//      }
-//    } catch (NoSuchElementException e) {
-//      Assert.assertTrue(Boolean.FALSE, "User is successfully logged in");
-//    }
         if (loggedInUserIcon.isDisplayed()) {
             log.info("<-------------- User is logged -------------->");
             loggedInUserIcon.click();
-        } else Assert.fail("<----- User is unable to log in ----->");
+        } else {
+            log.info("<-------------- User is unable to login -------------->");
+            Assert.fail("<----- User is unable to log in ----->");
+        }
     }
 }

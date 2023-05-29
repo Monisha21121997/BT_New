@@ -11,7 +11,6 @@ import jakarta.mail.internet.MimeMultipart;
 import managers.FileReaderManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import stepDefinitions.Hooks;
 
 import java.util.Date;
 import java.util.Properties;
@@ -60,7 +59,7 @@ public class SendEmailReport {
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
-            String fileName = System.getProperty("user.dir") + "/target/ExecutionReports/Report.html";
+            String fileName = System.getProperty("user.dir") + "/target/ExecutionReports/ExecutionPDFReport.pdf";
             DataSource source = new FileDataSource(fileName);
             messageBodyPart.setDataHandler(new DataHandler(source));
             messageBodyPart.setFileName("Report.html");
