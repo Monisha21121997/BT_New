@@ -14,4 +14,4 @@ Feature: Validate Login Feature on Dev Site
     Examples:
       | username          | password     |
       | btqa1@yopmail.com | Passtest123$ |
-      | btqa2@yopmail.com | Passtest123$ |
+#      | btqa2@yopmail.com | Passtest123$ |

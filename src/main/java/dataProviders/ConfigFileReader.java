@@ -88,7 +88,7 @@ public class ConfigFileReader {
     if (windowSize != null) {
       return Boolean.parseBoolean(windowSize);
     }
-    return true;
+    else return true;
   }
 
   public String getToEmailAddress() {
