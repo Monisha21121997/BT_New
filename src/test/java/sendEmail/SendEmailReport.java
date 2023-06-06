@@ -15,6 +15,11 @@ import org.apache.logging.log4j.Logger;
 import java.util.Date;
 import java.util.Properties;
 
+/**
+ * This class is called from maven to send the email
+ * It attaches the report file in a mail sends it
+ * is uses Java Jakarta Email API
+ */
 public class SendEmailReport {
 
     static Logger log = LogManager.getLogger(SendEmailReport.class);
@@ -23,14 +28,21 @@ public class SendEmailReport {
         log.info("-----------------------------------------------------------------------------");
         log.info("::::::::::::::::::::: Starting Email Send Process :::::::::::::::::::::");
         log.info("-----------------------------------------------------------------------------");
-        //provide recipient's email ID
+
+        //Setting the Recipient's email ID
         String to = FileReaderManager.getInstance().getConfigFileReader().getToEmailAddress();
-        //provide sender's email ID & credentials
+
+        //Setting the Sender's email ID
         String from = FileReaderManager.getInstance().getConfigFileReader().getFromEmailAddress();
+
+        //Setting the Sender's username
         final String username = FileReaderManager.getInstance().getConfigFileReader()
                 .getFromEmailAddress();
+
+        //Setting the Sender's password
         final String password = FileReaderManager.getInstance().getConfigFileReader()
                 .getFromEmailAddressPassword();
+
         //Email host details
         String host = "smtp.gmail.com";
         Properties props = new Properties();
@@ -39,6 +51,7 @@ public class SendEmailReport {
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", "465");
         Date date = new Date();
+
         //create the Session object
         Session session = Session.getInstance(props,
                 new jakarta.mail.Authenticator() {
@@ -51,20 +64,23 @@ public class SendEmailReport {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
             //set email subject field
             message.setSubject("Test Execution Report | Completed on " + date.toString());
+
             //Add Attachment
             BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText("Please find the attached Test Execution Report");
+            messageBodyPart.setText("PFA the Test Execution Report HTML File");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
-            String fileName = System.getProperty("user.dir") + "/target/ExecutionReports/ExecutionPDFReport.pdf";
+            String fileName = System.getProperty("user.dir") + "/target/ExecutionReports/Report.html";
             DataSource source = new FileDataSource(fileName);
             messageBodyPart.setDataHandler(new DataHandler(source));
             messageBodyPart.setFileName("Report.html");
             multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
+
             //send the email message
             Transport.send(message);
             log.info("-----------------------------------------------------------------------------");

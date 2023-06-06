@@ -10,9 +10,19 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 
+/**
+ * This class is responsible to get us the WebDriver, when we ask for it.
+ * Only exposes two methods getDriver() and closeDriver().
+ * GetDriver method will decide if the driver is already created or needs to be created.
+ * closeDriver method will terminate the created driver.
+ * Selenium WebDriver is not thread-safe by default.
+ * A variable should be accessed by same thread by which it is created, we can use ThreadLocal variables.
+ * This class makes variables thread safe & parallel execution can happen without any issues.
+ */
 public class WebDriverManager {
 
-  private WebDriver driver;
+  private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+  WebDriver driverLocal = driver.get();
   private static DriverType driverType;
   private static EnvironmentType environmentType;
 
@@ -22,22 +32,23 @@ public class WebDriverManager {
   }
 
   public WebDriver getDriver() {
-    if (driver == null) {
-      driver = createDriver();
+    if (driverLocal == null) {
+      driverLocal = createDriver();
+      driver.set(driverLocal);
     }
-    return driver;
+    return driverLocal;
   }
 
   public WebDriver createDriver() {
     switch (environmentType) {
       case LOCAL:
-        driver = createLocalDriver();
+        driverLocal = createLocalDriver();
         break;
       case REMOTE:
-        driver = createRemoteDriver();
+        driverLocal = createRemoteDriver();
         break;
     }
-    return driver;
+    return driverLocal;
   }
 
   public WebDriver createRemoteDriver() {
@@ -48,29 +59,29 @@ public class WebDriverManager {
   public WebDriver createLocalDriver() {
     switch (driverType) {
       case EDGE:
-        driver = new EdgeDriver();
+        driverLocal = new EdgeDriver();
         break;
       case FIREFOX:
-        driver = new FirefoxDriver();
+        driverLocal = new FirefoxDriver();
         break;
       case SAFARI:
-        driver = new SafariDriver();
+        driverLocal = new SafariDriver();
         break;
       case CHROME:
-        driver = new ChromeDriver();
+        driverLocal = new ChromeDriver();
         break;
     }
 
     if (FileReaderManager.getInstance().getConfigFileReader().getWindowSize()) {
-      driver.manage().window().maximize();
+      driverLocal.manage().window().maximize();
     }
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
+    driverLocal.manage().timeouts().implicitlyWait(Duration.ofSeconds(
         FileReaderManager.getInstance().getConfigFileReader().getImplicitWait()));
-    return driver;
+    return driverLocal;
   }
 
   public void closeDriver() {
-    driver.close();
-    driver.quit();
+    driverLocal.close();
+    driverLocal.quit();
   }
 }

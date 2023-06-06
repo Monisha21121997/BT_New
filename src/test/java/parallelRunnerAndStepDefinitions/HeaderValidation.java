@@ -7,6 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pageObjects.HomePage;
 
+/**
+ * Step Definition file for Header Validation.
+ * Test Cases are written in HeaderValidation Feature file
+ */
 public class HeaderValidation {
     TestContext testContext;
 
