@@ -9,6 +9,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pageObjects.LoginPage;
 
+/**
+ * Step Definition File for Login Validation
+ * Test Cases are written in LoginTest Feature file
+ */
 public class LoginTest {
 
     TestContext testContext;

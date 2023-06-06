@@ -9,6 +9,11 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+/**
+ * Unlike TestNG Annotations, cucumber supports only two hooks (Before & After).
+ * @before hook gets executed well before any other test scenario
+ * @after hook gets executed after executing the scenario.
+ */
 public class Hooks {
 
     TestContext testContext;

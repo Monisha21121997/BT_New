@@ -9,6 +9,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Class to read the .properties file
+ * Advantage of using properties file is we can store configurable things that are prone to change.
+ * It doesn't require recompiling of project after making changes in the .properties file
+ */
 public class ConfigFileReader {
 
   private Properties properties;

@@ -8,13 +8,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+import static org.assertj.core.api.Assertions.*;
 
+/**
+ * This is a Page Repository class using the Selenium Page Factory concept.
+ * Page Factory is an inbuilt Page Object Model concept for Selenium WebDriver, and it is very optimized.
+ * PageFactory is used to Initialize Elements of a Page class without having to use 'FindElement‘ or ‘FindElements‘.
+ * Annotations can be used to supply descriptive names of target objects to improve code readability.
+ */
 public class LoginPage {
 
     WebDriver driver;
 
-    //Initializing PageFactory
+    //Initializing PageFactory using class Constructor
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -22,7 +28,12 @@ public class LoginPage {
 
     static Logger log = LogManager.getLogger(LoginPage.class);
 
-    //WebElements
+    /**
+     * @FindBy Annotation
+     * As the name suggest, it helps to find the elements in the page using By strategy.
+     * It can accept TagName, PartialLinkText, Name, LinkText, Id, Css, ClassName, XPath as attributes.
+     */
+    //Finding the Page WebElements
     @FindBy(xpath = "//li[contains(@class,'anonymous__user')]")
     private WebElement userIcon;
 
@@ -50,7 +61,7 @@ public class LoginPage {
     }
 
     public void isLoginPopupVisible() {
-        Assert.assertTrue(submitButton.isDisplayed(), "is Login button visible?");
+        assertThat(submitButton.isDisplayed()).isTrue();
     }
 
     public void enterUsername(String my_username) {
@@ -72,7 +83,7 @@ public class LoginPage {
             loggedInUserIcon.click();
         } else {
             log.info("<-------------- User is unable to login -------------->");
-            Assert.fail("<----- User is unable to log in ----->");
+            assertThat(loggedInUserIcon.isDisplayed()).isTrue();
         }
     }
 }

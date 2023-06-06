@@ -2,6 +2,11 @@ package managers;
 
 import dataProviders.ConfigFileReader;
 
+/**
+ * File Reader Manager as Singleton Design Pattern to control object creation.
+ * The FileReaderManager class maintains a static reference to its own instance,
+ * and returns that reference from the static getInstance() method.
+ */
 public class FileReaderManager {
 
   //Private Instance of Class
