@@ -61,6 +61,5 @@ public class LoginTest {
     @Then("user should be logged in")
     public void user_should_be_logged_in() {
         loginPage.isProfileDisplayed();
-        log.info("======= User is logged in =======\n");
     }
 }
