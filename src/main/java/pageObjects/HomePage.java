@@ -4,8 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.BrowserActions;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
@@ -19,10 +22,12 @@ import java.util.List;
 public class HomePage {
 
     WebDriver driver;
+    BrowserActions browserActions;
 
     //Initializing PageFactory using class Constructor
     public HomePage(WebDriver driver) {
         this.driver = driver;
+        browserActions = new BrowserActions(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -42,6 +47,21 @@ public class HomePage {
 
     @FindBy(xpath = "//ul[contains(@class,'navbar-nav')]//li[contains(@class,'mx-2 nav-item')]")
     private List<WebElement> nav_items;
+
+    @FindBy(xpath = "//div[contains(@class,'bhr__news__letter__heading')]")
+    private WebElement newsLetter;
+
+    @FindBy(xpath = "//div[contains(@class,'bhr__news__letter__heading')]//following::input[1]")
+    private WebElement newsletter_Email;
+
+    @FindBy(xpath = "//div[contains(@class,'bhr__news__letter__heading')]//following::input[2]")
+    private WebElement newsletter_Password;
+
+    @FindBy (xpath = "//button[contains(@class,'bhr__news__mail__btn')]")
+    private WebElement newsletter_Submit;
+
+    @FindBy (xpath = "//div[contains(@class,'newsletter-response')]")
+    private WebElement newsletter_response;
 
     //Public getter methods
 
@@ -75,5 +95,28 @@ public class HomePage {
             log.error("<----------- Nav links are not authored --------->");
             assertThat(nav_items.size()).isGreaterThanOrEqualTo(5);
         }
+    }
+
+    public void getNewsLetterComponent(){
+        Actions actions = new Actions(driver);
+        actions.scrollToElement(newsLetter);
+        log.info("<----- Is Newsletter Component visible? "+newsLetter.isDisplayed()+ " ----->");
+    }
+
+    public void enterNewsletterEmail(String myEmail){
+        newsletter_Email.sendKeys(myEmail);
+    }
+
+    public void enterNewsletterPassword (String myPassword){
+        newsletter_Password.sendKeys(myPassword);
+    }
+
+    public void submitNewsletterRequest(){
+        newsletter_Submit.click();
+    }
+
+    public String getNewsletterResponse(){
+        browserActions.waitlogic();
+        return newsletter_response.getText();
     }
 }

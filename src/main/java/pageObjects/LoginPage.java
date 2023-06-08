@@ -79,7 +79,7 @@ public class LoginPage {
     public void isProfileDisplayed() {
         log.info("<---------------- Checking if the user is logged in or not -------------->");
         if (loggedInUserIcon.isDisplayed()) {
-            log.info("<-------------- User is logged -------------->");
+            log.info("<-------------- User is logged in -------------->");
             loggedInUserIcon.click();
         } else {
             log.info("<-------------- User is unable to login -------------->");

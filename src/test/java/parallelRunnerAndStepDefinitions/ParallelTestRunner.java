@@ -18,6 +18,7 @@ import org.testng.annotations.DataProvider;
         glue = {"parallelRunnerAndStepDefinitions"},
         plugin = {"pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "timeline:test-output/"},
+        tags = ("@Sanity"),
         monochrome = true
 )
 
