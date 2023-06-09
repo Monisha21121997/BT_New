@@ -21,21 +21,18 @@ public class BrowserActions {
 
     static Logger log = LogManager.getLogger(BrowserActions.class);
 
-    public BrowserActions(WebDriver driver){
+    public BrowserActions(WebDriver driver) {
         this.driver = driver;
         jse = (JavascriptExecutor) driver;
     }
 
-    public boolean waitlogic(){
+    public Boolean waitlogic() {
         webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        ExpectedCondition<Boolean> jqueryResponse = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver driver) {
-                try{
-                    return ((Long)jse.executeScript("return jQuery.active") == 0);
-                }catch (Exception e){
-                    return true;
-                }
+        ExpectedCondition<Boolean> jqueryResponse = driver -> {
+            try {
+                return ((Long) jse.executeScript("return jQuery.active") == 0);
+            } catch (Exception e) {
+                return true;
             }
         };
 

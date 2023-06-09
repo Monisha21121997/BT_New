@@ -57,10 +57,10 @@ public class HomePage {
     @FindBy(xpath = "//div[contains(@class,'bhr__news__letter__heading')]//following::input[2]")
     private WebElement newsletter_Password;
 
-    @FindBy (xpath = "//button[contains(@class,'bhr__news__mail__btn')]")
+    @FindBy(xpath = "//button[contains(@class,'bhr__news__mail__btn')]")
     private WebElement newsletter_Submit;
 
-    @FindBy (xpath = "//div[contains(@class,'newsletter-response')]")
+    @FindBy(xpath = "//div[contains(@class,'newsletter-response')]")
     private WebElement newsletter_response;
 
     //Public getter methods
@@ -91,31 +91,31 @@ public class HomePage {
             for (WebElement e : nav_items) {
                 log.info(e.getText());
             }
-        } else{
+        } else {
             log.error("<----------- Nav links are not authored --------->");
             assertThat(nav_items.size()).isGreaterThanOrEqualTo(5);
         }
     }
 
-    public void getNewsLetterComponent(){
+    public void getNewsLetterComponent() {
         Actions actions = new Actions(driver);
         actions.scrollToElement(newsLetter);
-        log.info("<----- Is Newsletter Component visible? "+newsLetter.isDisplayed()+ " ----->");
+        log.info("<----- Is Newsletter Component visible? " + newsLetter.isDisplayed() + " ----->");
     }
 
-    public void enterNewsletterEmail(String myEmail){
+    public void enterNewsletterEmail(String myEmail) {
         newsletter_Email.sendKeys(myEmail);
     }
 
-    public void enterNewsletterPassword (String myPassword){
+    public void enterNewsletterPassword(String myPassword) {
         newsletter_Password.sendKeys(myPassword);
     }
 
-    public void submitNewsletterRequest(){
+    public void submitNewsletterRequest() {
         newsletter_Submit.click();
     }
 
-    public String getNewsletterResponse(){
+    public String getNewsletterResponse() {
         browserActions.waitlogic();
         return newsletter_response.getText();
     }

@@ -9,20 +9,20 @@ import dataProviders.ConfigFileReader;
  */
 public class FileReaderManager {
 
-  //Private Instance of Class
-  private static FileReaderManager fileReaderManager = new FileReaderManager();
-  private static ConfigFileReader configFileReader;
+    //Private Instance of Class
+    private static FileReaderManager fileReaderManager = new FileReaderManager();
+    private static ConfigFileReader configFileReader;
 
-  //Restrict Object Creation
-  private FileReaderManager() {
-  }
+    //Restrict Object Creation
+    private FileReaderManager() {
+    }
 
-  //Public Methods to access the class
-  public static FileReaderManager getInstance() {
-    return fileReaderManager;
-  }
+    //Public Methods to access the class
+    public static FileReaderManager getInstance() {
+        return fileReaderManager;
+    }
 
-  public ConfigFileReader getConfigFileReader() {
-    return (configFileReader == null) ? new ConfigFileReader() : configFileReader;
-  }
+    public ConfigFileReader getConfigFileReader() {
+        return (configFileReader == null) ? new ConfigFileReader() : configFileReader;
+    }
 }

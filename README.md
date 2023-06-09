@@ -61,6 +61,8 @@ Following are the configurations available in the Configuration.properties file:
 
 **Logging:** Log4J Version 2.x
 
+**Parallel Execution:** TestNg 7.x and ThreadLocal
+
 
 ## Support & Project Access
 
@@ -74,7 +76,7 @@ Following are the configurations available in the Configuration.properties file:
 - BDD Framework on latest Cucumber version
 - Page Object Pattern using Selenium Page Factory
 - Singleton Design Pattern
-- Managers like Page Object Manager, File Reader Mananger, WebDriver Manager
+- Managers like Page Object Manager, File Reader Manager, WebDriver Manager
 - Config File Reader
 - Sharing Test Context using PicoContainer
 - Hooks
@@ -84,6 +86,9 @@ Following are the configurations available in the Configuration.properties file:
 - Sending email after test execution using Exec-Maven-Plugin & Jakarta Mail API
 - Generating PDF Reports
 - Latest Log4J version 2 implementation
+- TestNg
+- ThreadLocal
+- Browser Utilities
 
 ## Feedback
 If you have any feedback, please reach out to Vishal or Pranjal

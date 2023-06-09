@@ -11,6 +11,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 /**
  * Unlike TestNG Annotations, cucumber supports only two hooks (Before & After).
+ *
  * @before hook gets executed well before any other test scenario
  * @after hook gets executed after executing the scenario.
  */
