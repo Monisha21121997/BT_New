@@ -18,14 +18,14 @@ import org.testng.annotations.DataProvider;
         glue = {"parallelRunnerAndStepDefinitions"},
         plugin = {"pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "timeline:test-output/"},
-        tags = ("@Sanity"),
+        tags = ("@E2E"),
         monochrome = true
 )
 
 public class ParallelTestRunner extends AbstractTestNGCucumberTests {
     @Override
     @DataProvider(parallel = true)
-    public Object[][] scenarios(){
+    public Object[][] scenarios() {
         return super.scenarios();
     }
 }

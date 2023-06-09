@@ -10,36 +10,36 @@ import org.apache.logging.log4j.Logger;
 import pageObjects.HomePage;
 
 public class NewsLetterValidation {
-  TestContext testContext;
+    TestContext testContext;
 
-  HomePage homePage;
+    HomePage homePage;
 
-  static Logger log = LogManager.getLogger(HeaderValidation.class);
+    static Logger log = LogManager.getLogger(HeaderValidation.class);
 
-  public NewsLetterValidation(TestContext context){
-    testContext = context;
-    homePage = testContext.getPageObjectManager().getHomepage();
-  }
+    public NewsLetterValidation(TestContext context) {
+        testContext = context;
+        homePage = testContext.getPageObjectManager().getHomepage();
+    }
 
-  @When("Newsletter component is visible")
-  public void newsletter_component_is_visible() {
-    homePage.getNewsLetterComponent();
-  }
+    @When("Newsletter component is visible")
+    public void newsletter_component_is_visible() {
+        homePage.getNewsLetterComponent();
+    }
 
-  @When("User enters the Name as {string} & Email as {string} information")
-  public void user_enters_the_name_as_email_as_information(String myEmail, String myPassword) {
-    homePage.enterNewsletterEmail(myEmail);
-    homePage.enterNewsletterPassword(myPassword);
-  }
+    @When("User enters the Name as {string} & Email as {string} information")
+    public void user_enters_the_name_as_email_as_information(String myEmail, String myPassword) {
+        homePage.enterNewsletterEmail(myEmail);
+        homePage.enterNewsletterPassword(myPassword);
+    }
 
-  @When("Clicks on Subscribe button")
-  public void clicks_on_subscribe_button() {
-    homePage.submitNewsletterRequest();
-  }
+    @When("Clicks on Subscribe button")
+    public void clicks_on_subscribe_button() {
+        homePage.submitNewsletterRequest();
+    }
 
-  @Then("{string} Error message should appear")
-  public void error_message_should_appear(String expectedResponse) {
-    log.info(":::::<<Newsletter Response is>>::::: "+
-        assertThat(homePage.getNewsletterResponse()).isEqualTo(expectedResponse));
-  }
+    @Then("{string} Error message should appear")
+    public void error_message_should_appear(String expectedResponse) {
+        log.info(":::::<<Newsletter Response is>>::::: " +
+                assertThat(homePage.getNewsletterResponse()).isEqualTo(expectedResponse));
+    }
 }
