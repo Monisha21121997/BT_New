@@ -17,43 +17,43 @@ import org.openqa.selenium.TakesScreenshot;
  */
 public class Hooks {
 
-    TestContext testContext;
-    static Logger log = LogManager.getLogger(Hooks.class);
+  TestContext testContext;
+  static Logger log = LogManager.getLogger(Hooks.class);
 
-    public Hooks(TestContext context) {
-        testContext = context;
+  public Hooks(TestContext context) {
+    testContext = context;
+  }
+
+  @Before
+  public static void BeforeScenario(Scenario scenario) {
+    log.info("-----------------------------------------------------------------------------");
+    log.info("Feature ID- " + scenario.getId());
+    log.info(" Executing Scenario ---> " + scenario.getName());
+    log.info("-----------------------------------------------------------------------------");
+  }
+
+  //Order 1 will run before Order 0
+  @After(order = 1)
+  public void afterScenario(Scenario scenario) {
+    log.info("-----------------------------------------------------------------------------");
+    log.info("======= Scenario execution is finished: " + scenario.getName());
+    log.info("-----------------------------------------------------------------------------\n\n");
+
+    if (scenario.isFailed()) {
+      String screenshotName = scenario.getName().replaceAll(" ", "_");
+      //Take Screenshot
+      byte[] sourcePath = ((TakesScreenshot) testContext.getWebDriverManager()
+          .getDriver()).getScreenshotAs(OutputType.BYTES);
+      scenario.attach(sourcePath, "image/png", screenshotName);
     }
+  }
 
-    @Before
-    public static void BeforeScenario(Scenario scenario) {
-        log.info("-----------------------------------------------------------------------------");
-        log.info("Feature ID- " + scenario.getId());
-        log.info(" Executing Scenario ---> " + scenario.getName());
-        log.info("-----------------------------------------------------------------------------");
-    }
-
-    //Order 1 will run before Order 0
-    @After(order = 1)
-    public void afterScenario(Scenario scenario) {
-        log.info("-----------------------------------------------------------------------------");
-        log.info("======= Scenario execution is finished: " + scenario.getName());
-        log.info("-----------------------------------------------------------------------------\n\n");
-
-        if (scenario.isFailed()) {
-            String screenshotName = scenario.getName().replaceAll(" ", "_");
-            //Take Screenshot
-            byte[] sourcePath = ((TakesScreenshot) testContext.getWebDriverManager()
-                    .getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(sourcePath, "image/png", screenshotName);
-        }
-    }
-
-    @After(order = 0)
-    public void TearDown() {
-        log.info("-----------------------------------------------------------------------------");
-        log.info("::::::::::::: Terminating browser session :::::::::::::");
-        log.info("-----------------------------------------------------------------------------\n\n");
-        testContext.getWebDriverManager().closeDriver();
-    }
+  @After(order = 0)
+  public void TearDown() {
+    log.info("-----------------------------------------------------------------------------");
+    log.info("::::::::::::: Terminating browser session :::::::::::::");
+    log.info("-----------------------------------------------------------------------------\n\n");
+    testContext.getWebDriverManager().closeDriver();
+  }
 
 }

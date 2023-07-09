@@ -8,33 +8,34 @@ import org.apache.logging.log4j.Logger;
 import pageObjects.HomePage;
 
 /**
- * Step Definition file for Header Validation.
- * Test Cases are written in HeaderValidation Feature file
+ * Step Definition file for Header Validation. Test Cases are written in HeaderValidation Feature
+ * file
  */
 public class HeaderValidation {
-    TestContext testContext;
 
-    HomePage homePage;
+  TestContext testContext;
 
-    static Logger log = LogManager.getLogger(HeaderValidation.class);
+  HomePage homePage;
 
-    public HeaderValidation(TestContext context) {
-        testContext = context;
-        homePage = testContext.getPageObjectManager().getHomepage();
-    }
+  static Logger log = LogManager.getLogger(HeaderValidation.class);
 
-    @Then("^Global Nav should be visible$")
-    public void global_nav_should_be_visible() {
-        homePage.isNavContainerVisible();
-    }
+  public HeaderValidation(TestContext context) {
+    testContext = context;
+    homePage = testContext.getPageObjectManager().getHomepage();
+  }
 
-    @And("^Bihar Tourism Logo should be visible$")
-    public void bihar_tourism_logo_should_be_visible() {
-        homePage.isLogoVisible();
-    }
+  @Then("^Global Nav should be visible$")
+  public void global_nav_should_be_visible() {
+    homePage.isNavContainerVisible();
+  }
 
-    @And("^There should be 5 Links available in the Global Nav Level 1 menu$")
-    public void there_should_be_5_links_available_in_the_global_nav_level_1_menu() {
-        homePage.isHeaderLinksDisplayed();
-    }
+  @And("^Bihar Tourism Logo should be visible$")
+  public void bihar_tourism_logo_should_be_visible() {
+    homePage.isLogoVisible();
+  }
+
+  @And("^There should be 5 Links available in the Global Nav Level 1 menu$")
+  public void there_should_be_5_links_available_in_the_global_nav_level_1_menu() {
+    homePage.isHeaderLinksDisplayed();
+  }
 }
