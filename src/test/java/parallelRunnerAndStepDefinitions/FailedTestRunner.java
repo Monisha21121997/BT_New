@@ -11,8 +11,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
     features = {"@target/failedTestCases.txt"},
     glue = {"parallelRunnerAndStepDefinitions"},
-    plugin = {"pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-        "timeline:test-output/", "rerun:target/failedTestCases.txt"},
+    plugin = {"pretty", "timeline:test-output/", "rerun:target/failedTestCases.txt"},
     monochrome = true
 )
 
