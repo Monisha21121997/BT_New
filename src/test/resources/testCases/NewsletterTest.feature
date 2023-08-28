@@ -1,7 +1,7 @@
+@NewsletterTest
 Feature: Validate the Newsletter Feature
   Description: To validate that the user is able to subscribe the newsletter
 
-  @Sanity @E2E
   Scenario: Validate the behaviour when already subscribed email ID is used to subscribe Newsletter
     Given User is on BT Homepage
     When Newsletter component is visible

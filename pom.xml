@@ -29,32 +29,32 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.10.0</version>
+            <version>4.11.0</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.12.1</version>
+            <version>7.13.0</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>7.12.1</version>
+            <version>7.13.0</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
-            <version>7.12.1</version>
+            <version>7.13.0</version>
         </dependency>
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extentreports-cucumber7-adapter</artifactId>
-            <version>1.13.0</version>
+            <version>1.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
-            <version>5.0.9</version>
+            <version>5.1.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.mail</groupId>
@@ -96,7 +96,7 @@
                 <version>3.1.0</version>
                 <configuration>
                     <includes>
-                        <include>**/*ParallelTestRunner.java</include>
+                        <include>**/*TestRunner.java</include>
                     </includes>
                     <parallel>methods</parallel>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
@@ -115,8 +115,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <classpathScope>test</classpathScope>
-                            <mainClass>sendEmail.SendEmailReport</mainClass>
+                            <mainClass>utils.SendEmailReport</mainClass>
                         </configuration>
                     </execution>
                 </executions>

@@ -1,8 +1,9 @@
 package managers;
 
 import org.openqa.selenium.WebDriver;
-import pageObjects.HomePage;
-import pageObjects.LoginPage;
+import pageObjects.HomePageObjects;
+import pageObjects.LoginPageObjects;
+import pageObjects.SitemapPageObjects;
 
 /**
  * Page Object Manager is to create the page's object. And also to make sure that the same object
@@ -12,19 +13,25 @@ import pageObjects.LoginPage;
 public class PageObjectManager {
 
   private WebDriver driver;
-  private LoginPage loginPage;
-
-  private HomePage homePage;
+  private LoginPageObjects loginPageObjects;
+  private HomePageObjects homePageObjects;
+  private SitemapPageObjects sitemapPageObjects;
 
   public PageObjectManager(WebDriver driver) {
     this.driver = driver;
   }
 
-  public LoginPage getLoginPage() {
-    return (loginPage == null) ? loginPage = new LoginPage(driver) : loginPage;
+  public LoginPageObjects getLoginPageObjects() {
+    return (loginPageObjects
+        == null) ? loginPageObjects = new LoginPageObjects(driver) : loginPageObjects;
   }
 
-  public HomePage getHomepage() {
-    return (homePage == null) ? homePage = new HomePage(driver) : homePage;
+  public HomePageObjects getHomepageObjects() {
+    return (homePageObjects
+        == null) ? homePageObjects = new HomePageObjects(driver) : homePageObjects;
+  }
+
+  public SitemapPageObjects getSitemapPageObjects(){
+    return (sitemapPageObjects == null) ? sitemapPageObjects = new SitemapPageObjects(driver) : sitemapPageObjects;
   }
 }

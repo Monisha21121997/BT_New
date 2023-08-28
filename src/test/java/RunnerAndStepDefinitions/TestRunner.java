@@ -1,4 +1,4 @@
-package parallelRunnerAndStepDefinitions;
+package RunnerAndStepDefinitions;
 
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -12,14 +12,13 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
     features = "src/test/resources/testCases",
-    glue = {"parallelRunnerAndStepDefinitions"},
+    glue = {"RunnerAndStepDefinitions"},
     plugin = {"pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
         "timeline:test-output/", "rerun:target/failedTestCases.txt"},
-    tags = ("@E2E"),
     monochrome = true
 )
 
-public class ParallelTestRunner extends AbstractTestNGCucumberTests {
+public class TestRunner extends AbstractTestNGCucumberTests {
 
   @Override
   @DataProvider(parallel = true)
