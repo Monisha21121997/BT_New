@@ -1,7 +1,7 @@
+@LoginTest
 Feature: Validate Login Feature on Dev Site
   Description: To validate that the user is able to login into BT Dev Site
 
-  @Smoke @Sanity @E2E
   Scenario Outline: User is trying to login using correct credentials
     Given User is on BT Homepage
     And user clicks on the user icon button

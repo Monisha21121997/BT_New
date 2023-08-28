@@ -1,4 +1,4 @@
-package sendEmail;
+package utils;
 
 import jakarta.activation.DataHandler;
 import jakarta.activation.DataSource;

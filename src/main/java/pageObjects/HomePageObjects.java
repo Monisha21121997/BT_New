@@ -9,8 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserActions;
 
-import static org.assertj.core.api.Assertions.*;
-
 import java.util.List;
 
 /**
@@ -20,19 +18,18 @@ import java.util.List;
  * ‘FindElements‘. Annotations can be used to supply descriptive names of target objects to improve
  * code readability.
  */
-public class HomePage {
+public class HomePageObjects {
 
   WebDriver driver;
   BrowserActions browserActions;
 
   //Initializing PageFactory using class Constructor
-  public HomePage(WebDriver driver) {
+  public HomePageObjects(WebDriver driver) {
     this.driver = driver;
     browserActions = new BrowserActions(driver);
     PageFactory.initElements(driver, this);
   }
-
-  static Logger log = LogManager.getLogger(HomePage.class);
+  private static final Logger log = LogManager.getLogger(HomePageObjects.class);
 
   /**
    * @FindBy Annotation As the name suggest, it helps to find the elements in the page using By
@@ -66,43 +63,32 @@ public class HomePage {
 
   //Public getter methods
 
-  public void isNavContainerVisible() {
-    log.info("----------- Checking if the Navbar is visible or not -----------");
-    if (nav_container.isDisplayed()) {
-      log.info("<----- Navbar is visible ----->");
-    } else {
-      log.error("<----- Navbar is not displayed ----->");
-      assertThat(nav_container.isDisplayed()).isTrue();
-    }
+  public boolean isNavContainerVisible() {
+    return nav_container.isDisplayed();
   }
 
-  public void isLogoVisible() {
-    log.info("----------- Checking if the BT Logo is visible or not -----------");
-    if (bt_logo.isDisplayed()) {
-      log.info("----------- BT Logo is visible -----------");
-    } else {
-      log.error("<----------- BT Logo is not displayed --------->");
-      assertThat(bt_logo.isDisplayed()).isTrue();
-    }
+  public boolean isLogoVisible() {
+   return bt_logo.isDisplayed();
   }
 
-  public void isHeaderLinksDisplayed() {
+  public int isHeaderLinksDisplayed() {
     if (nav_items.size() >= 5) {
       log.info(
-          "----------- Total " + nav_items.size() + " links are available in logo -----------");
+          "----------- Total " + nav_items.size() + " links are visible in Header -----------");
       for (WebElement e : nav_items) {
         log.info(e.getText());
       }
+      log.info(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
     } else {
       log.error("<----------- Nav links are not authored --------->");
-      assertThat(nav_items.size()).isGreaterThanOrEqualTo(5);
     }
+    return nav_items.size();
   }
 
-  public void getNewsLetterComponent() {
+  public boolean getNewsLetterComponent() {
     Actions actions = new Actions(driver);
     actions.scrollToElement(newsLetter);
-    log.info("<----- Is Newsletter Component visible? " + newsLetter.isDisplayed() + " ----->");
+    return newsLetter.isDisplayed();
   }
 
   public void enterNewsletterEmail(String myEmail) {

@@ -1,4 +1,4 @@
-package parallelRunnerAndStepDefinitions;
+package RunnerAndStepDefinitions;
 
 import cucumber.TestContext;
 import io.cucumber.java.After;

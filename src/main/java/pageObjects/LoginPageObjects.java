@@ -18,17 +18,16 @@ import static org.assertj.core.api.Assertions.*;
  * ‘FindElements‘. Annotations can be used to supply descriptive names of target objects to improve
  * code readability.
  */
-public class LoginPage {
+public class LoginPageObjects {
 
   WebDriver driver;
 
   //Initializing PageFactory using class Constructor
-  public LoginPage(WebDriver driver) {
+  public LoginPageObjects(WebDriver driver) {
     this.driver = driver;
     PageFactory.initElements(driver, this);
   }
-
-  static Logger log = LogManager.getLogger(LoginPage.class);
+  private static final Logger log = LogManager.getLogger(LoginPageObjects.class);
 
   /**
    * @FindBy Annotation As the name suggest, it helps to find the elements in the page using By
@@ -62,8 +61,8 @@ public class LoginPage {
     userIcon.click();
   }
 
-  public void isLoginPopupVisible() {
-    assertThat(submitButton.isDisplayed()).isTrue();
+  public boolean isLoginPopupVisible() {
+    return submitButton.isDisplayed();
   }
 
   public void enterUsername(String my_username) {
@@ -78,14 +77,7 @@ public class LoginPage {
     submitButton.click();
   }
 
-  public void isProfileDisplayed() {
-    log.info("<---------------- Checking if the user is logged in or not -------------->");
-    if (loggedInUserIcon.isDisplayed()) {
-      log.info("<-------------- User is logged in -------------->");
-      loggedInUserIcon.click();
-    } else {
-      log.info("<-------------- User is unable to login -------------->");
-      assertThat(loggedInUserIcon.isDisplayed()).isTrue();
-    }
+  public WebElement profileDisplayed() {
+    return loggedInUserIcon;
   }
 }

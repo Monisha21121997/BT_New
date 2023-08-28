@@ -1,7 +1,7 @@
+@HeaderTest
 Feature: Validate Header Links on the site
   Description: To validate that the Header Links are available as per the design
 
-  @Smoke @E2E
   Scenario: Validate the Header Logo and Level 1 Header Links
     Given User is on BT Homepage
     Then Global Nav should be visible

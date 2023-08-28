@@ -27,6 +27,7 @@ public class BrowserActions {
   }
 
   public Boolean waitlogic() {
+    jse = (JavascriptExecutor) driver;
     webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
     ExpectedCondition<Boolean> jqueryResponse = driver -> {
       try {
@@ -37,6 +38,10 @@ public class BrowserActions {
     };
 
     return webDriverWait.until(jqueryResponse);
+  }
+
+  public void navigateToPage(String PageURL){
+    driver.get(PageURL);
   }
 
 }
